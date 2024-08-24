@@ -1,0 +1,93 @@
+.delivery{
+    &__box{
+        width: 100%;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        background:rgba(216, 241, 229, 0.893);
+        @media(max-width: 990px){
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    &__daily{
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 50px;
+        @media(max-width:990px){
+            padding: 100px;
+            width: 100%;
+        }
+        @media(max-width:650px){
+            padding: 30px;
+        }
+        h2{
+            font-size: 40px;
+            font-weight: 600;
+            color: rgba(37, 61, 78, 1);
+        }
+        p{
+            font-size: 18px;
+            font-weight: 400;
+            color:  rgba(126, 126, 126, 1);
+            margin-bottom: 20px;
+        }
+    }
+    &__wrapper{
+        display: flex;
+        width: 450px;
+        height: 64px;
+        border-radius: 50px;
+        background: white;
+        display: flex;
+        justify-content: space-between;
+        @media(max-width: 560px){
+            width: 350px;
+        }
+        @media(max-width: 450px){
+            width: 250px;
+        }
+    }
+    button{
+        width: 159px;
+        border: none;
+        background: rgba(59, 183, 126, 1);
+        border-radius: 50px;
+        color: white;
+        font-size: 18px;
+        transition: .4s;
+        @media(max-width: 400px){
+            width: 160px;
+            font-size: 15px;
+            border-radius: 20px;
+            padding: 3px;
+        }
+        &:hover{
+            transform: scaleY(1.07);
+        }
+    }
+    &__input{
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+        gap: 10px;
+        input{
+            outline: none;
+            border: none;
+            color:  rgba(126, 126, 126, 1);
+        }
+    }
+    &__icon{
+        font-size: 18px;
+        color:  rgba(126, 126, 126, 1);
+    }
+    &__photo{
+        margin-top: 135px;
+        padding-right: 40px;
+        @media(max-width: 990px){
+            margin-top: 0px;
+        }
+    }
+}
