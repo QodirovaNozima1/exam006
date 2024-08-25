@@ -9,7 +9,7 @@ import './Catalog.scss'
 const Catalog = () => {
   return (
     <div className='catalog'>
-        <div className="container">
+        <div className="container mx-auto">
             <div className="catalog__box">
                 <div className="catalog__card">
                     <div className="catalog__img">

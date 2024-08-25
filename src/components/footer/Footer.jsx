@@ -1,21 +1,22 @@
 import { FaTelegramPlane } from "react-icons/fa";
+import { AiOutlinePinterest } from "react-icons/ai";
 import { CiClock1 } from "react-icons/ci";
 import { BsTelephoneOutboundFill } from "react-icons/bs";
 import { FaFacebook } from "react-icons/fa";
-import logo from "../../assets/logo.png";
-import images1 from "../../assets/facebook.svg";
-import images2 from "../../assets/google.svg";
-import all from "../../assets/all.png";
 import { AiFillTwitterCircle } from "react-icons/ai";
-import { FaInstagram } from "react-icons/fa";
-import { IoLocationOutline } from "react-icons/io5";
 import { FaHeadphonesAlt } from "react-icons/fa";
 import { AiFillYoutube } from "react-icons/ai";
-import { AiOutlinePinterest } from "react-icons/ai";
+import { FaInstagram } from "react-icons/fa";
+import { IoLocationOutline } from "react-icons/io5";
+import logo from "../../assets/logo.png";
+import photo1 from "../../assets/facebook.svg";
+import photo2 from "../../assets/google.svg";
+import all from "../../assets/all.png";
+
 const Footer = () => {
   return (
-    <div className="footer mt-20">
-        <div className="container">
+    <div className="footer mt-20 pb-8 container mx-auto">
+        <div className="">
                   <img className="mb-5" src={logo} alt="" />
       <div className="grid grid-cols-1 sm:grid-cols-3 ml-0 gap-4 md:grid-cols-5 ml-16 gap-16 lg:grid-cols-6 gap-4 mb-8 ml-8 ">
         <div className="flex flex-col gap-5">
@@ -129,8 +130,8 @@ const Footer = () => {
             From App Store or Google Play
           </p>
           <div className="flex gap-2">
-            <img className="w-[90px]" src={images1} alt="" />
-            <img className="w-[90px]" src={images2} alt="" />
+            <img className="w-[90px]" src={photo1} alt="" />
+            <img className="w-[90px]" src={photo2} alt="" />
           </div>
           <p className="text-[14px] text-[#253D4E] text-start">
             Secured Payment Gateways

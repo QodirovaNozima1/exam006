@@ -1,0 +1,68 @@
+.btn{
+    transition: .3s
+}
+.hero{
+    img{
+        height: 400px;
+    }
+    @media(max-width:450px){
+        padding-bottom: 20px;
+    }
+    &__wrapper{
+        display: flex;
+        width: 450px;
+        height: 64px;
+        border-radius: 50px;
+        background: white;
+        display: flex;
+        justify-content: space-between;
+        @media(max-width: 560px){
+            width: 360px;
+        }
+        @media(max-width: 450px){
+            width: 270px;
+        }
+    }
+    button{
+        width: 159px;
+        border: none;
+        background: rgba(59, 183, 126, 1);
+        border-radius: 50px;
+        color: white;
+        font-size: 18px;
+        transition: .4s;
+        @media(max-width: 400px){
+            width: 100px;
+            font-size: 15px;
+            border-radius: 20px;
+        }
+        &:hover{
+            transform: scaleY(1.07);
+        }
+    }
+    &__input{
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+        gap: 10px;
+        input{
+            width: 100%;
+            outline: none;
+            border: none;
+            color:  rgba(126, 126, 126, 1);
+        }
+    }
+    &__icon{
+        font-size: 18px;
+        color:  rgba(126, 126, 126, 1);
+    }
+}
+
+.btn:hover{
+    box-shadow: 0 7px 10px #15803c52;
+}
+@media (max-width:640px) {
+    .title{
+        margin-top: -300px;
+    }
+}

@@ -1,103 +1,49 @@
-import React, { useState, useEffect } from 'react'
-import { LiaCartPlusSolid } from "react-icons/lia";
-import { PiSpinnerBold } from "react-icons/pi";
-import axios from '../../api/Index'
-import { Link } from 'react-router-dom';
-const API_URL = "https://dummyjson.com"
-const Product = () => {
-  
-    const [products, setProducts] = useState(null)
-    const [categories, setCategories] = useState(null)
-    const [selectCategory, setSelectCategory] = useState("")
-    const [loading, setLoading] = useState(false)
-    const [total, setTotal] = useState(0)
-    const [onset, setOnset] = useState(1)
-    const limit = 4
-
-
-
-    useEffect(()=>{
-        axios
-        .get(`/products/category-list`)
-        .then(res => setCategories(res.data))
-        .catch(err => console.log(err))
-    },[])
-    console.log(categories);
-    console.log(selectCategory);
-    
-    
-
-    useEffect(() => {
-        setLoading(true)
-        axios
-            .get(`/products${selectCategory}`,{
-                params:{
-                    limit: limit * onset
-                }
-            })
-            .then(res => {
-                console.log(res.data);
-                setTotal(res.data.total);
-                setProducts(res.data.products)
-            })
-            .catch(err => console.log(err))
-            .finally(()=> setLoading(false))
-    }, [onset, selectCategory])
-    
-    
-    const [offset, setOffset] = useState(0)
-    const handClick = () => {
-        setOffset(offset + 1)
-    }
-
-    const productItem = products?.map((product) => (
-        <div key={product.id}>
-            <Link to = {`/product/${product.id}`}>
-            <img src={product.images[0]} alt="" />
-            </Link>
-            <div className='product__box'>
-                <h3 className=''>{product.brand}</h3>
-                <p className=''>12%</p>
-                <p className='product__desck'>{product.description}</p>
-                <p className=''>${product.price}</p>
-            </div>
-            <button className=''>New</button>
-            <button className=''><LiaCartPlusSolid className='' /></button>
-            <div className=''>
-                <button disabled={offset <= 0}  onClick={()=> setOffset(p=>p-1)} >-</button>
-                <button className=''>{offset}</button>
-                <button onClick={handClick}>+</button>
-            </div>
+import React, { memo } from "react";
+import { LiaStarSolid } from "react-icons/lia";
+import { IoHeartOutline } from "react-icons/io5";
+import { PiShoppingCartLight } from "react-icons/pi";
+import { useStateValue } from "../../components/context/Index.jsx";
+import '../../hook/useFetch.jsx'
+import { Link } from "react-router-dom";
+const Product = ({ data, title }) => {
+  console.log(data);
+  const [_, dispatch] = useStateValue();
+  let items = data?.map((product) => (
+    <div
+      className=" w-290px] rounded-lg  flex flex-col justify-between p-3 mb-7 relative"
+      key={product.id}
+    >
+      <button className="flex absolute right-2 top-2"> <IoHeartOutline onClick={() => dispatch({ type: "ADD_TO_WISHLIST", payload: product }) } className="text-[30px]"/></button>
+      <p className="pl-3 pb-2 w-14 bg-green-400 text-white rounded-tl-[15px] rounded-br-[20px]  absolute top-0 left-0">new</p>
+      <div className="w-full  h-60">
+        <Link to={`/product/${product.id}`}>
+          <img className="w-full h-full object-contain duration-300 hover:scale-105" src={product.images[0]} alt="Photo"/>
+        </Link>
+      </div>
+      <div className="flex flex-col gap-2">
+        <p className="text-green-300 select-none"><b className=" font-medium text-gray-500">BY:</b>{product.title}</p>
+        <div className="flex gap-3 items-center">
+          <LiaStarSolid className="text-[yellow]" />
+          
+          <p>({product.rating})</p>
         </div>
-    ))
-    const categoryItems = categories?.map(item =>(
-        <option key={item} value={`/category/${item}`}>{item}</option>
-    ))
- 
-    return (
-        <div className=''>
-            <div className=''>
-                <p className=''>Скидки <b className=''>%</b></p>
-                <p className=''>Все товары в категории</p>
-            </div>
-
-             <select value={selectCategory} onChange={e => setSelectCategory(e.target.value)} name="" id="">
-             <option value="" >All</option>
-             {categoryItems}
-             </select>
-            <div>
-                { productItem}
-            </div>
-            <div>
-            {loading && <button><PiSpinnerBold /></button>}
-            </div>
-
-            {
-                limit * onset <= total &&
-                <button onClick={() => setOnset(p => p + 1)} className='py-2 px-6 border rounded-md block mx-auto mt-5 bg-emerald-300 text-slate-100 text green'>See more</button>
-            }
+        <div className="flex justify-between">
+          <b className="text-green-400 text-2xl">{product.price} USD <del className="text-gray-400">$ - 53</del> </b>
+          <button className="  flex items-center p-3 rounded-2xl font-bold bg-green-200  text-green-500 " onClick={() => { 
+            dispatch({ type: "CART", payload: product });}} >
+            <PiShoppingCartLight className="text-[25px] " />Add
+          </button>
         </div>
-    )
-}
+      </div>
+    </div>
+  ));
+  return (
+    <div className="container mx-auto">
+      <div className="grid items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+        {items}
+      </div>
+    </div>
+  );
+};
 
-export default Product
+export default memo(Product);

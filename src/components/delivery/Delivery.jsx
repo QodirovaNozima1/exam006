@@ -5,8 +5,7 @@ import './Delivery.scss'
 
 const Delivery = () => {
   return (
-    <div className="delivery">
-        <div className='container'>
+    <div className="delivery   container mx-auto">
         <div className="delivery__box">
             <div className="delivery__daily">
                 <h2>Stay home & get your daily
@@ -24,7 +23,6 @@ const Delivery = () => {
                 <img src={photo} alt="" />
             </div>
         </div>
-    </div>
     </div>
   )
 }
